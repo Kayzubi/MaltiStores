@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { Container, Row } from 'reactstrap'
 import { images, icons } from '../../assets/images'
 import styles from './header.module.scss'
-import { FaHeart, FaShoppingCart } from 'react-icons/fa'
+import { FaHeart, FaShoppingCart, FaBars } from 'react-icons/fa'
+
+import { motion } from 'framer-motion'
 
 const Header = () => {
   const navLinks = [
@@ -25,20 +27,21 @@ const Header = () => {
       <Container>
         <Row>
           <div className={styles.navWrapper}>
-            <div>
+            <div className={styles.logo}>
               <img src={images.logo} alt='logo' />
               <div>
                 <h1>MultiStores</h1>
                 <p>Since 1997</p>
               </div>
             </div>
-            <div>
+            <div className={styles.navigation}>
               <ul>
                 {navLinks.map((item, i) => (
-                  <li>
+                  <li key={i}>
                     <NavLink
-                      className={(navClass) => (navClass.isActive ? '' : '')}
-                      key={i}
+                      className={(navClass) =>
+                        navClass.isActive ? `${styles.activeNav}` : ''
+                      }
                       to={item.path}>
                       {item.display}
                     </NavLink>
@@ -46,16 +49,25 @@ const Header = () => {
                 ))}
               </ul>
             </div>
-            <div>
-              <span>
+            <div className={styles.navIcons}>
+              <span className={styles.icon}>
                 <FaHeart />
+                <span className={styles.badge}>1</span>
               </span>
-              <span>
+              <span className={styles.icon}>
                 <FaShoppingCart />
+                <span className={styles.badge}>1</span>
               </span>
-              <span>
-                <img src={icons.userIcon} alt='user' />
+              <span className={styles.userImage}>
+                <motion.img
+                  whileTap={{ scale: 1.2 }}
+                  src={icons.userIcon}
+                  alt='user'
+                />
               </span>
+            </div>
+            <div className={styles.menu}>
+              <FaBars />
             </div>
           </div>
         </Row>

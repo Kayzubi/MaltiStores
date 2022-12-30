@@ -1,7 +1,80 @@
-// @use "../../variables.scss" as variables
+@use '../../variables.scss' as variables;
 
 .navWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h1 {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 11px;
+      color: #00000080;
+    }
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .navigation {
+    ul {
+      display: flex;
+      gap: 25px;
+    }
+    .activeNav {
+      font-weight: 600;
+    }
+  }
+
+  .navIcons {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .icon {
+      cursor: pointer;
+      position: relative;
+      color: variables.$primary-color;
+    }
+
+    .badge {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: variables.$card-bg-04;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      // color: #fff;
+      border-radius: 50%;
+    }
+
+    .userImage {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  .menu {
+    font-size: 18px;
+    display: none;
+  }
 }

@@ -74,10 +74,21 @@ legend {
 :focus {
   outline: 0;
 }
+
+a {
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 body {
   background: white;
   line-height: 1;
   color: black;
+  font-family: 'Montserrat', sans-serif;
 }
 ol,
 ul {
@@ -104,4 +115,8 @@ q:after {
 blockquote,
 q {
   quotes: '' '';
+}
+
+img {
+  max-width: 100%;
 }
