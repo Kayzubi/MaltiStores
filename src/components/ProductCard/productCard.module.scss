@@ -1,0 +1,26 @@
+@use '../../variables.scss' as values;
+
+.productCard {
+  cursor: pointer;
+  .productName {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: 700;
+  }
+
+  .productCategory {
+    // font-weight: 300;
+    font-size: 14px;
+    color: #00000080;
+  }
+
+  .addBtn {
+    border: none;
+    outline: none;
+    background-color: values.$primary-color;
+    padding: 8px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+}
