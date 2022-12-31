@@ -1,0 +1,32 @@
+@use '../../variables.scss' as variables;
+
+.servicesSection {
+  padding: 40px 0;
+}
+
+.service {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  span {
+    width: 40px;
+    height: 40px;
+    background-color: variables.$primary-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}

@@ -7,6 +7,7 @@ import { images } from '../../assets/images'
 import styles from './home.module.scss'
 
 import { Container, Row, Col } from 'reactstrap'
+import Services from '../../components/services/Services'
 
 const Home = () => {
   const year = new Date().getFullYear()
@@ -42,6 +43,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+      <Services />
     </Helmet>
   )
 }
