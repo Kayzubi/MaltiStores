@@ -90,6 +90,11 @@ body {
   color: black;
   font-family: 'Montserrat', sans-serif;
 }
+
+section {
+  margin-bottom: 50px;
+}
+
 ol,
 ul {
   list-style: none;
@@ -119,4 +124,9 @@ q {
 
 img {
   max-width: 100%;
+}
+
+.heading__secondary {
+  font-weight: 700;
+  font-size: 20px;
 }

@@ -4,6 +4,7 @@ import styles from './productCard.module.scss'
 
 import { Col } from 'reactstrap'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const ProductCard = ({ item }) => {
   return (
@@ -13,7 +14,9 @@ const ProductCard = ({ item }) => {
           <motion.img whileHover={{ scale: 0.9 }} src={item.imgUrl} alt='' />
         </div>
         <div className='p-2'>
-          <h3 className={styles.productName}>{item.productName}</h3>
+          <h3 className={styles.productName}>
+            <Link to={`/shop/${item.id}`}>{item.productName}</Link>
+          </h3>
           <span className={styles.productCategory}>{item.category}</span>
         </div>
         <div className='d-flex justify-content-between p-2 align-items-center'>

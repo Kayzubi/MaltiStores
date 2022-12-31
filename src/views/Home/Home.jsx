@@ -13,12 +13,19 @@ import Services from '../../components/services/Services'
 import ProductList from '../../components/ProductList/ProductList'
 
 const Home = () => {
-  const [data, setData] = useState(products)
+  const [trending, setTrending] = useState([])
+  const [bestSales, setBestSales] = useState([])
 
   useEffect(() => {
-    const filteredData = products.filter((item) => item.category === 'mobile')
+    const filteredTrending = products.filter(
+      (item) => item.category === 'chair'
+    )
+    const filteredBestSales = products.filter(
+      (item) => item.category === 'mobile'
+    )
 
-    setData(filteredData)
+    setTrending(filteredTrending)
+    setBestSales(filteredBestSales)
   }, [])
 
   const year = new Date().getFullYear()
@@ -59,9 +66,20 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg='12' className='text-center'>
-              <h2>Trending Products</h2>
+              <h2 className='heading__secondary'>Trending Products</h2>
             </Col>
-            <ProductList data={data} />
+            <ProductList data={trending} />
+          </Row>
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+              <h2 className='heading__secondary'>Best Sales</h2>
+            </Col>
+            <ProductList data={bestSales} />
           </Row>
         </Container>
       </section>
