@@ -1,0 +1,35 @@
+@use '../../variables.scss' as variables;
+
+.heroSection {
+  background-color: variables.$hero-bg;
+  padding: 20px 0;
+}
+
+.heroContent {
+  padding-top: 45px;
+
+  h2 {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 40px;
+    margin: 30px 0;
+    text-transform: capitalize;
+  }
+
+  p {
+    line-height: 28px;
+
+    &:nth-child(1) {
+      font-weight: 600;
+    }
+  }
+}
+
+.buyBtn {
+  margin: 40px 0;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background-color: variables.$primary-color;
+  text-transform: uppercase;
+  color: #fff;
+}
