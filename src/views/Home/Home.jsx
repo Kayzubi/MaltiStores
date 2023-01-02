@@ -11,6 +11,7 @@ import styles from './home.module.scss'
 import { Container, Row, Col } from 'reactstrap'
 import Services from '../../components/services/Services'
 import ProductList from '../../components/ProductList/ProductList'
+import Clock from '../../components/Clock/Clock'
 
 const Home = () => {
   const [trending, setTrending] = useState([])
@@ -80,6 +81,26 @@ const Home = () => {
               <h2 className='heading__secondary'>Best Sales</h2>
             </Col>
             <ProductList data={bestSales} />
+          </Row>
+        </Container>
+      </section>
+
+      <section className={styles.counterSection}>
+        <Container>
+          <Row>
+            <Col lg='6' md='6' className='text-start pt-5'>
+              <img src={images.countDownImg} alt='' />
+            </Col>
+            <Col lg='6' md='6' className='pt-5 text-white'>
+              <div className={styles.clockSectionTop}>
+                <h4 className='mb-2 fs-6'>Limited Offer</h4>
+                <h3 className='mb-3 fs-5'>Quality ArmChair</h3>
+              </div>
+              <Clock />
+              <Link to={'/shop'}>
+                <button className={styles.shopBtn}>Visit store</button>
+              </Link>
+            </Col>
           </Row>
         </Container>
       </section>
