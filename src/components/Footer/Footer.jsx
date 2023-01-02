@@ -96,7 +96,8 @@ const Footer = () => {
           </Col>
           <Col lg='12' className='mt-5'>
             <p className='text-center'>
-              &copy; Copyright {year}. Built by <a href='#'>Kizito Azubuike</a>
+              &copy; Copyright {year}. Built by{' '}
+              <a href='https://github.com/Kayzubi'>Kizito Azubuike</a>
             </p>
           </Col>
         </Row>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Container, Row } from 'reactstrap'
 import { images, icons } from '../../assets/images'
@@ -6,24 +6,47 @@ import styles from './header.module.scss'
 import { FaHeart, FaShoppingCart, FaBars } from 'react-icons/fa'
 
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+
+const navLinks = [
+  {
+    path: 'home',
+    display: 'Home',
+  },
+  {
+    path: 'shop',
+    display: 'Shop',
+  },
+  {
+    path: 'cart',
+    display: 'Cart',
+  },
+]
 
 const Header = () => {
-  const navLinks = [
-    {
-      path: 'home',
-      display: 'Home',
-    },
-    {
-      path: 'shop',
-      display: 'Shop',
-    },
-    {
-      path: 'cart',
-      display: 'Cart',
-    },
-  ]
+  const headerRef = useRef(null)
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener('scroll', () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.classList.add(`${styles.stickyHeader}`)
+      } else {
+        headerRef.current.classList.remove(`${styles.stickyHeader}`)
+      }
+    })
+  }
+
+  useEffect(() => {
+    stickyHeaderFunc()
+
+    return () => window.removeEventListener('scroll', stickyHeaderFunc)
+  }, [])
+
   return (
-    <div>
+    <header ref={headerRef}>
       <Container>
         <Row>
           <div className={styles.navWrapper}>
@@ -72,7 +95,7 @@ const Header = () => {
           </div>
         </Row>
       </Container>
-    </div>
+    </header>
   )
 }
 
