@@ -39,29 +39,29 @@ const Clock = () => {
   }, [])
 
   return (
-    <div className='d-flex align-items-center gap-3 mt-5 mb-5'>
-      <div className='d-flex align-items-center gap-3'>
+    <div className='d-flex align-items-center gap-2 mt-5 mb-5'>
+      <div className='d-flex align-items-center gap-2'>
         <div className='text-center'>
           <h1 className='fs-3 mb-2'>{days}</h1>
           <h5 className='fs-6'>Days</h5>
         </div>
         <span className='fs-3'>:</span>
       </div>
-      <div className='d-flex align-items-center gap-3'>
+      <div className='d-flex align-items-center gap-2'>
         <div className='text-center'>
           <h1 className='fs-3 mb-2'>{hours}</h1>
           <h5 className='fs-6'>Hours</h5>
         </div>
         <span className='fs-3'>:</span>
       </div>
-      <div className='d-flex align-items-center gap-3'>
+      <div className='d-flex align-items-center gap-2'>
         <div className='text-center'>
           <h1 className='fs-3 mb-2'>{minutes}</h1>
           <h5 className='fs-6'>Minutes</h5>
         </div>
         <span className='fs-3'>:</span>
       </div>
-      <div className='d-flex align-items-center gap-3'>
+      <div className='d-flex align-items-center gap-2'>
         <div className='text-center'>
           <h1 className='fs-3 mb-2'>{seconds}</h1>
           <h5 className='fs-6'>Seconds</h5>

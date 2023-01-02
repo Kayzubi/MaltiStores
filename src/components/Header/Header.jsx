@@ -1,9 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Container, Row } from 'reactstrap'
 import { images, icons } from '../../assets/images'
 import styles from './header.module.scss'
-import { FaHeart, FaShoppingCart, FaBars } from 'react-icons/fa'
+import { FaHeart, FaShoppingCart } from 'react-icons/fa'
+import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi'
 
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
@@ -25,6 +26,8 @@ const navLinks = [
 
 const Header = () => {
   const headerRef = useRef(null)
+  const navbarRef = useRef(null)
+  const [navOpen, setNavOpen] = useState(false)
 
   const stickyHeaderFunc = () => {
     window.addEventListener('scroll', () => {
@@ -32,9 +35,9 @@ const Header = () => {
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current.classList.add(`${styles.stickyHeader}`)
+        headerRef?.current.classList.add(`${styles.stickyHeader}`)
       } else {
-        headerRef.current.classList.remove(`${styles.stickyHeader}`)
+        headerRef?.current.classList.remove(`${styles.stickyHeader}`)
       }
     })
   }
@@ -44,6 +47,11 @@ const Header = () => {
 
     return () => window.removeEventListener('scroll', stickyHeaderFunc)
   }, [])
+
+  const navToggle = () => {
+    navbarRef.current.classList.toggle(`${styles.activeNavigation}`)
+    setNavOpen(!navOpen)
+  }
 
   return (
     <header ref={headerRef}>
@@ -57,7 +65,10 @@ const Header = () => {
                 <p>Since 1997</p>
               </div>
             </div>
-            <div className={styles.navigation}>
+            <div
+              className={styles.navigation}
+              ref={navbarRef}
+              onClick={navToggle}>
               <ul>
                 {navLinks.map((item, i) => (
                   <li key={i}>
@@ -88,9 +99,9 @@ const Header = () => {
                   alt='user'
                 />
               </span>
-            </div>
-            <div className={styles.menu}>
-              <FaBars />
+              <div onClick={navToggle} className={styles.menuIcon}>
+                {!navOpen ? <HiOutlineMenuAlt3 /> : <HiOutlineX color='#fff' />}
+              </div>
             </div>
           </div>
         </Row>
