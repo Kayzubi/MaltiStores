@@ -30,7 +30,7 @@ const Header = () => {
             <div className={styles.logo}>
               <img src={images.logo} alt='logo' />
               <div>
-                <h1>MultiStores</h1>
+                <h1>MaltiStores</h1>
                 <p>Since 1997</p>
               </div>
             </div>

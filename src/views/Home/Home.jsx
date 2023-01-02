@@ -16,6 +16,7 @@ import Clock from '../../components/Clock/Clock'
 const Home = () => {
   const [trending, setTrending] = useState([])
   const [bestSales, setBestSales] = useState([])
+  const [popular, setPopular] = useState([])
 
   useEffect(() => {
     const filteredTrending = products.filter(
@@ -25,8 +26,11 @@ const Home = () => {
       (item) => item.category === 'mobile'
     )
 
+    const filteredPopular = products.filter((item) => item.category === 'watch')
+
     setTrending(filteredTrending)
     setBestSales(filteredBestSales)
+    setPopular(filteredPopular)
   }, [])
 
   const year = new Date().getFullYear()
@@ -98,9 +102,24 @@ const Home = () => {
               </div>
               <Clock />
               <Link to={'/shop'}>
-                <button className={styles.shopBtn}>Visit store</button>
+                <motion.button
+                  whileTap={{ scale: 1.1 }}
+                  className={styles.shopBtn}>
+                  Visit store
+                </motion.button>
               </Link>
             </Col>
+          </Row>
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+              <h2 className='heading__secondary'>Popular Products</h2>
+            </Col>
+            <ProductList data={popular} />
           </Row>
         </Container>
       </section>

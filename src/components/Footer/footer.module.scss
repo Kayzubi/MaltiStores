@@ -1,0 +1,53 @@
+@use '../../variables.scss' as values;
+
+.footer {
+  background-color: values.$primary-color;
+  padding: 80px 0px 35px;
+  color: rgb(212, 211, 211);
+
+  li {
+    color: rgb(212, 211, 211);
+    font-size: 12px;
+    background-color: transparent;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .footerHeading {
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+
+  .footerText {
+    margin-top: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h1 {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .contact {
+    li {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+}
