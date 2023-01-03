@@ -2,11 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './productCard.module.scss'
 
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../redux/slices/cartSlice'
+
+import { toast } from 'react-toastify'
+
 import { Col } from 'reactstrap'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ item }) => {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(cartActions.addItem(item))
+    toast.success('Product Added Successfully')
+  }
   return (
     <Col lg='3' md='4'>
       <div className={styles.productCard}>
@@ -22,7 +33,10 @@ const ProductCard = ({ item }) => {
         <div className='d-flex justify-content-between p-2 align-items-center'>
           <span>${item.price}</span>
           <span>
-            <motion.button whileTap={{ scale: 1.2 }} className={styles.addBtn}>
+            <motion.button
+              whileTap={{ scale: 1.2 }}
+              className={styles.addBtn}
+              onClick={addToCart}>
               ADD TO CART
             </motion.button>
           </span>

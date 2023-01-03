@@ -3,11 +3,16 @@ import { NavLink } from 'react-router-dom'
 import { Container, Row } from 'reactstrap'
 import { images, icons } from '../../assets/images'
 import styles from './header.module.scss'
-import { FaHeart, FaShoppingCart } from 'react-icons/fa'
-import { HiOutlineMenuAlt3, HiOutlineX } from 'react-icons/hi'
+import { FaRegHeart } from 'react-icons/fa'
+import {
+  HiOutlineMenuAlt3,
+  HiOutlineX,
+  HiOutlineShoppingCart,
+} from 'react-icons/hi'
 
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const navLinks = [
   {
@@ -28,6 +33,8 @@ const Header = () => {
   const headerRef = useRef(null)
   const navbarRef = useRef(null)
   const [navOpen, setNavOpen] = useState(false)
+
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity)
 
   const stickyHeaderFunc = () => {
     window.addEventListener('scroll', () => {
@@ -85,12 +92,14 @@ const Header = () => {
             </div>
             <div className={styles.navIcons}>
               <span className={styles.icon}>
-                <FaHeart />
+                <FaRegHeart />
                 <span className={styles.badge}>1</span>
               </span>
               <span className={styles.icon}>
-                <FaShoppingCart />
-                <span className={styles.badge}>1</span>
+                <HiOutlineShoppingCart />
+                {totalQuantity !== 0 && (
+                  <span className={styles.badge}>{totalQuantity}</span>
+                )}
               </span>
               <span className={styles.userImage}>
                 <motion.img

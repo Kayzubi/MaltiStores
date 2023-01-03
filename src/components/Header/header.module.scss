@@ -56,12 +56,12 @@
     position: absolute;
     top: -5px;
     right: -10px;
-    background-color: variables.$card-bg-04;
+    background-color: variables.$primary-color;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 10px;
-    // color: #fff;
+    color: #fff;
     border-radius: 50%;
   }
 }
