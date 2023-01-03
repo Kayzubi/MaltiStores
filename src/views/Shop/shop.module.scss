@@ -1,0 +1,37 @@
+@use '../../variables.scss' as values;
+
+.filterOptions {
+  select {
+    padding: 8px 10px;
+    border: 1px solod values.$primary-color;
+    color: values.$primary-color;
+    cursor: pointer;
+
+    option {
+      font-size: 12px;
+      background-color: values.$primary-color;
+      color: #fff;
+    }
+  }
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid values.$primary-color;
+
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+  }
+}
+
+.large {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+}
