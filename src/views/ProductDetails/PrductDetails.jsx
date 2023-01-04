@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -26,6 +26,9 @@ const PrductDetails = () => {
 
   const dispatch = useDispatch()
 
+  const userRef = useRef('')
+  const messageRef = useRef('')
+
   const {
     productName,
     imgUrl,
@@ -41,6 +44,18 @@ const PrductDetails = () => {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault()
+
+    const user = userRef.current.value
+    const text = messageRef.current.value
+
+    const reviewObj = {
+      user,
+      text,
+      rating,
+    }
+
+    console.log(reviewObj)
+    toast.success('Review submitted successfully')
   }
 
   const addToCart = () => {
@@ -128,11 +143,16 @@ const PrductDetails = () => {
                         Leave a message
                       </h6>
                       <div className={styles.formGroup}>
-                        <input type='text' placeholder='Full name....' />
+                        <input
+                          type='text'
+                          placeholder='Full name....'
+                          ref={userRef}
+                        />
                       </div>
                       <div className='d-flex gap-2 mt-3 mb-3'>
                         {ratings.map((item) => (
                           <span
+                            key={item}
                             className='d-flex gap-1 align-items-center fs-6'
                             onClick={() => setRating(item)}>
                             {item}
@@ -144,7 +164,8 @@ const PrductDetails = () => {
                         <textarea
                           cols='30'
                           rows='7'
-                          placeholder='Leave a message...'></textarea>
+                          placeholder='Leave a message...'
+                          ref={messageRef}></textarea>
                       </div>
 
                       <motion.button
