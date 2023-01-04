@@ -1,0 +1,22 @@
+.rating {
+  position: relative;
+  width: 130px;
+  margin: 10px 0;
+  height: 25px;
+  font-size: 16px;
+  color: coral;
+
+  div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+
+    span {
+      margin-right: 12.5px;
+    }
+  }
+}

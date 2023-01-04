@@ -1,3 +1,4 @@
+@use './variables.scss' as variables;
 /* google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
@@ -133,4 +134,25 @@ img {
 .heading__secondary {
   font-weight: 700;
   font-size: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+}
+
+.buyBtn {
+  @extend .btn;
+  margin: 40px 0;
+  background-color: variables.$primary-color;
+  color: #fff;
+}
+
+.shopBtn {
+  @extend .btn;
+  color: variables.$primary-color;
+  background-color: #fff;
 }

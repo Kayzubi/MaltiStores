@@ -53,7 +53,7 @@ const Home = () => {
                     <motion.button
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 1.1 }}
-                      className={styles.buyBtn}>
+                      className='buyBtn'>
                       Shop now
                     </motion.button>
                   </Link>
@@ -102,9 +102,7 @@ const Home = () => {
               </div>
               <Clock />
               <Link to={'/shop'}>
-                <motion.button
-                  whileTap={{ scale: 1.1 }}
-                  className={styles.shopBtn}>
+                <motion.button whileTap={{ scale: 1.1 }} className='shopBtn'>
                   Visit store
                 </motion.button>
               </Link>

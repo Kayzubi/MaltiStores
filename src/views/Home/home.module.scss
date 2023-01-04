@@ -25,31 +25,10 @@
   }
 }
 
-.btn {
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  border: none;
-  outline: none;
-}
-
-.buyBtn {
-  @extend .btn;
-  margin: 40px 0;
-  background-color: variables.$primary-color;
-  color: #fff;
-}
-
 .counterSection {
   background-color: variables.$primary-color;
 
   img {
     object-fit: contain;
   }
-}
-
-.shopBtn {
-  @extend .btn;
-  color: variables.$primary-color;
-  background-color: #fff;
 }
