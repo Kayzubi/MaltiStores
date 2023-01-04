@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container, Row, Col } from 'reactstrap'
 import { FaStar, FaRegStar } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 import Helmet from '../../components/Helmet/Helmet'
 import CommnSection from '../../components/CommonSection/CommonSection'
@@ -12,6 +13,9 @@ import products from '../../assets/data/products'
 import styles from './productDetails.module.scss'
 import StarRatings from '../../components/StarRatings/StarRatings'
 
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../redux/slices/cartSlice'
+
 const ratings = [1, 2, 3, 4, 5]
 
 const PrductDetails = () => {
@@ -19,6 +23,8 @@ const PrductDetails = () => {
   const product = products.find((item) => item.id === id)
   const [tab, setTab] = useState('desc')
   const [rating, setRating] = useState(0)
+
+  const dispatch = useDispatch()
 
   const {
     productName,
@@ -35,6 +41,11 @@ const PrductDetails = () => {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault()
+  }
+
+  const addToCart = () => {
+    dispatch(cartActions.addItem(product))
+    toast.success('Product Added Successfully')
   }
 
   return (
@@ -65,7 +76,10 @@ const PrductDetails = () => {
                 <p className={styles.price}>${price}</p>
                 <p className={styles.shortDes}>{shortDesc}</p>
 
-                <motion.button whileTap={{ scale: 1.2 }} className='buyBtn'>
+                <motion.button
+                  whileTap={{ scale: 1.2 }}
+                  className='buyBtn'
+                  onClick={addToCart}>
                   ADD TO CART
                 </motion.button>
               </Col>
@@ -110,6 +124,9 @@ const PrductDetails = () => {
                       action='#'
                       onSubmit={handleReviewSubmit}
                       className={styles.reviewForm}>
+                      <h6 className='heading__secondary mb-4'>
+                        Leave a message
+                      </h6>
                       <div className={styles.formGroup}>
                         <input type='text' placeholder='Full name....' />
                       </div>
