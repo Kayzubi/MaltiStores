@@ -108,8 +108,8 @@ const PrductDetails = () => {
                       <h6 className='text-center fs-4 '>No reviews</h6>
                     ) : (
                       <ul className={styles.productReviews}>
-                        {reviews.map((item) => (
-                          <li className={styles.review}>
+                        {reviews.map((item, index) => (
+                          <li className={styles.review} key={index}>
                             <span>{item.rating} rating</span>
                             <div>
                               <p>{item.user}</p>

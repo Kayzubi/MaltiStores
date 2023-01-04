@@ -92,15 +92,17 @@ const Home = () => {
       <section className={styles.counterSection}>
         <Container>
           <Row>
-            <Col lg='6' md='12' className='text-start pt-5'>
+            <Col lg='6' md='12' className={styles.counterImg}>
               <img src={images.countDownImg} alt='' />
             </Col>
-            <Col lg='6' md='12' className='pt-5 text-white'>
+            <Col lg='6' md='12' className='pt-5 text-white pb-5'>
               <div className={styles.clockSectionTop}>
                 <h4 className='mb-2 fs-6'>Limited Offer</h4>
                 <h3 className='mb-3 fs-5'>Quality ArmChair</h3>
               </div>
-              <Clock />
+              <div className={styles.counterClock}>
+                <Clock />
+              </div>
               <Link to={'/shop'}>
                 <motion.button whileTap={{ scale: 1.1 }} className='shopBtn'>
                   Visit store

@@ -1,6 +1,7 @@
 @use '../../variables.scss' as values;
 
 .filterOptions {
+  margin-bottom: 30px;
   select {
     padding: 8px 10px;
     border: 1px solod values.$primary-color;

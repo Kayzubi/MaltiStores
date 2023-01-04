@@ -1,3 +1,5 @@
+@use '../../breakpoints.scss' as breakpoints;
+
 .commonSection {
   background: linear-gradient(rgba(0, 0, 0, 0.449), rgba(0, 0, 0, 0.444)),
     url('../../assets/images/common-section-bg.jpg') no-repeat center center;
@@ -10,5 +12,8 @@
     color: #fff;
     font-size: 25px;
     font-weight: 700;
+    @include breakpoints.tablet {
+      font-size: 18px;
+    }
   }
 }
