@@ -20,6 +20,13 @@ const ProductCard = ({ item }) => {
     dispatch(cartActions.addItem(item))
     toast.success('Product Added Successfully')
   }
+
+  const numberWithCommas = (x) => {
+    const newX = x * 503
+    return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
+  const newPrice = numberWithCommas(item.price)
   return (
     <Col lg='3' md='4'>
       <div className={styles.productCard}>
@@ -38,7 +45,7 @@ const ProductCard = ({ item }) => {
           <span className={styles.productCategory}>{item.category}</span>
         </div>
         <div className='d-flex justify-content-between p-2 align-items-center'>
-          <span>${item.price}</span>
+          <span>₦{newPrice}</span>
           <span>
             <motion.button
               whileTap={{ scale: 1.2 }}

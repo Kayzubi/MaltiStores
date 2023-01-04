@@ -63,6 +63,13 @@ const PrductDetails = () => {
     toast.success('Product Added Successfully')
   }
 
+  const numberWithCommas = (x) => {
+    const newX = x * 503
+    return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
+  const newPrice = numberWithCommas(price)
+
   return (
     <Helmet title={productName}>
       <CommnSection title={productName} />
@@ -88,7 +95,7 @@ const PrductDetails = () => {
                   </p>
                 </div>
 
-                <p className={styles.price}>${price}</p>
+                <p className={styles.price}>₦{newPrice}</p>
                 <p className={styles.shortDes}>{shortDesc}</p>
 
                 <motion.button
