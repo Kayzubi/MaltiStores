@@ -67,7 +67,9 @@ const Cart = () => {
                       onClick={() => navigate('/checkout')}>
                       Checkout
                     </button>
-                    <button className='buyBtn mt-1 w-100'>
+                    <button
+                      className='buyBtn mt-1 w-100'
+                      onClick={() => navigate('/shop')}>
                       Continue shopping
                     </button>
                   </div>
