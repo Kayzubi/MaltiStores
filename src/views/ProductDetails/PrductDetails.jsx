@@ -59,7 +59,14 @@ const PrductDetails = () => {
   }
 
   const addToCart = () => {
-    dispatch(cartActions.addItem(product))
+    dispatch(
+      cartActions.addItem({
+        id,
+        productName,
+        imgUrl,
+        price,
+      })
+    )
     toast.success('Product Added Successfully')
   }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { Container, Row, Col } from 'reactstrap'
 import { motion } from 'framer-motion'
 import { FaRegTrashAlt } from 'react-icons/fa'
@@ -11,7 +13,16 @@ import Helmet from '../../components/Helmet/Helmet'
 import CommonSection from '../../components/CommonSection/CommonSection'
 import styles from './cart.module.scss'
 const Cart = () => {
+  const navigate = useNavigate()
+
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const totalAmount = useSelector((state) => state.cart.totalPrice)
+
+  const numberWithCommas = (x) => {
+    const newX = x * 503
+    return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+  const newAmount = numberWithCommas(totalAmount)
 
   return (
     <Helmet title='Cart'>
@@ -41,7 +52,28 @@ const Cart = () => {
                 </table>
               )}
             </Col>
-            <Col lg='3'></Col>
+            <Col lg='3'>
+              {cartItems.length !== 0 && (
+                <div>
+                  <h5 className='fw-bold d-flex justify-content-between align-items-center mb-3'>
+                    Total: <span className='fs-3'>₦{newAmount}</span>
+                  </h5>
+                  <p className={styles.info}>
+                    Taxes and Shipping fee will be calculated in checkout
+                  </p>
+                  <div>
+                    <button
+                      className='buyBtn mt-3 w-100'
+                      onClick={() => navigate('/checkout')}>
+                      Checkout
+                    </button>
+                    <button className='buyBtn mt-1 w-100'>
+                      Continue shopping
+                    </button>
+                  </div>
+                </div>
+              )}
+            </Col>
           </Row>
         </Container>
       </section>
@@ -65,7 +97,10 @@ const Tr = ({ item }) => {
       <td>${item.price}</td>
       <td>{item.quantity}pc</td>
       <td>
-        <motion.button whileTap={{ scale: 1.2 }} onClick={removeFromCart}>
+        <motion.button
+          className={styles.delete}
+          whileTap={{ scale: 1.2 }}
+          onClick={removeFromCart}>
           <FaRegTrashAlt />
         </motion.button>
       </td>

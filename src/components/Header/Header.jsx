@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useRef, useState, useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Container, Row } from 'reactstrap'
 import { images, icons } from '../../assets/images'
 import styles from './header.module.scss'
@@ -11,7 +11,6 @@ import {
 } from 'react-icons/hi'
 
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 const navLinks = [
@@ -33,6 +32,8 @@ const Header = () => {
   const headerRef = useRef(null)
   const navbarRef = useRef(null)
   const [navOpen, setNavOpen] = useState(false)
+
+  const navigate = useNavigate()
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity)
 
@@ -95,7 +96,7 @@ const Header = () => {
                 <FaRegHeart />
                 <span className={styles.badge}>1</span>
               </span>
-              <span className={styles.icon}>
+              <span className={styles.icon} onClick={() => navigate('/cart')}>
                 <HiOutlineShoppingCart />
                 {totalQuantity !== 0 && (
                   <span className={styles.badge}>{totalQuantity}</span>

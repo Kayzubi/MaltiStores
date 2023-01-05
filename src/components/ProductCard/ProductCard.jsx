@@ -14,10 +14,19 @@ import { Link, useNavigate } from 'react-router-dom'
 const ProductCard = ({ item }) => {
   const dispatch = useDispatch()
 
+  const { id, productName, imgUrl, price, category } = item
+
   const navigate = useNavigate()
 
   const addToCart = () => {
-    dispatch(cartActions.addItem(item))
+    dispatch(
+      cartActions.addItem({
+        id,
+        productName,
+        imgUrl,
+        price,
+      })
+    )
     toast.success('Product Added Successfully')
   }
 
@@ -26,23 +35,23 @@ const ProductCard = ({ item }) => {
     return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
-  const newPrice = numberWithCommas(item.price)
+  const newPrice = numberWithCommas(price)
   return (
     <Col lg='3' md='4'>
       <div className={styles.productCard}>
         <div>
           <motion.img
             whileHover={{ scale: 0.9 }}
-            src={item.imgUrl}
+            src={imgUrl}
             alt=''
-            onClick={() => navigate(`/shop/${item.id}`)}
+            onClick={() => navigate(`/shop/${id}`)}
           />
         </div>
         <div className='p-2'>
           <h3 className={styles.productName}>
-            <Link to={`/shop/${item.id}`}>{item.productName}</Link>
+            <Link to={`/shop/${id}`}>{productName}</Link>
           </h3>
-          <span className={styles.productCategory}>{item.category}</span>
+          <span className={styles.productCategory}>{category}</span>
         </div>
         <div className='d-flex justify-content-between p-2 align-items-center'>
           <span>₦{newPrice}</span>
