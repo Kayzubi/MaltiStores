@@ -1,8 +1,76 @@
 import React from 'react'
-import Helmet from '../../components/Helmet/Helmet'
 
+import { Container, Row, Col } from 'reactstrap'
+import { motion } from 'framer-motion'
+import { FaRegTrashAlt } from 'react-icons/fa'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { cartActions } from '../../redux/slices/cartSlice'
+
+import Helmet from '../../components/Helmet/Helmet'
+import CommonSection from '../../components/CommonSection/CommonSection'
+import styles from './cart.module.scss'
 const Cart = () => {
-  return <Helmet title='Cart'>Cart</Helmet>
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
+  return (
+    <Helmet title='Cart'>
+      <CommonSection title='Shopping Cart' />
+      <section>
+        <Container>
+          <Row>
+            <Col lg='9'>
+              {cartItems.length === 0 ? (
+                <h5 className='text-center fs-5'>No Items in Cart</h5>
+              ) : (
+                <table className={`table bordered ${styles.cartTable}`}>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Item</th>
+                      <th>Price</th>
+                      <th>Qty</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((item, index) => (
+                      <Tr item={item} key={index} />
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </Col>
+            <Col lg='3'></Col>
+          </Row>
+        </Container>
+      </section>
+    </Helmet>
+  )
+}
+
+const Tr = ({ item }) => {
+  const dispatch = useDispatch()
+
+  const removeFromCart = () => {
+    dispatch(cartActions.deleteItem(item.id))
+  }
+
+  return (
+    <tr>
+      <td>
+        <img src={item.image} alt='' />
+      </td>
+      <td>{item.productName}</td>
+      <td>${item.price}</td>
+      <td>{item.quantity}pc</td>
+      <td>
+        <motion.button whileTap={{ scale: 1.2 }} onClick={removeFromCart}>
+          <FaRegTrashAlt />
+        </motion.button>
+      </td>
+    </tr>
+  )
 }
 
 export default Cart

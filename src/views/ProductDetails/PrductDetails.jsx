@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -69,6 +69,10 @@ const PrductDetails = () => {
   }
 
   const newPrice = numberWithCommas(price)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [product])
 
   return (
     <Helmet title={productName}>
@@ -156,15 +160,16 @@ const PrductDetails = () => {
                           ref={userRef}
                         />
                       </div>
-                      <div className='d-flex gap-2 mt-3 mb-3'>
+                      <div className='d-flex gap-2 mt-3 mb-3 rating__group'>
                         {ratings.map((item) => (
-                          <span
+                          <motion.span
+                            whileTap={{ scale: 1.2 }}
                             key={item}
                             className='d-flex gap-1 align-items-center fs-6'
                             onClick={() => setRating(item)}>
                             {item}
                             {rating === item ? <FaStar /> : <FaRegStar />}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                       <div className={styles.formGroup}>
