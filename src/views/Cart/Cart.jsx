@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -23,6 +23,10 @@ const Cart = () => {
     return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
   const newAmount = numberWithCommas(totalAmount)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Helmet title='Cart'>

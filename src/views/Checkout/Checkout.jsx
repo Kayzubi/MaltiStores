@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Container, Row, Col } from 'reactstrap'
 
@@ -18,6 +18,9 @@ const Checkout = () => {
 
   const price = numberWithCommas(amount)
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Helmet title='Checkout'>
       <CommonSection title='Checkout' />
