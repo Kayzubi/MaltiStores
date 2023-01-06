@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
@@ -8,6 +8,11 @@ import { images } from '../../assets/images'
 import styles from './login.module.scss'
 
 const SignUp = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [file, setFile] = useState(null)
+
   return (
     <Helmet title='Login'>
       <section className='mt-1'>
@@ -26,6 +31,8 @@ const SignUp = () => {
                         placeholder='Username'
                         id='username'
                         name='username'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
 
                       <label htmlFor='email'>Username</label>
@@ -36,6 +43,8 @@ const SignUp = () => {
                         placeholder='Email'
                         id='email'
                         name='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
 
                       <label htmlFor='email'>Email</label>
@@ -46,6 +55,8 @@ const SignUp = () => {
                         placeholder='Password'
                         id='password'
                         name='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
 
                       <label htmlFor='password'>Password</label>
@@ -57,6 +68,8 @@ const SignUp = () => {
                         placeholder=''
                         id='profileImg'
                         name='profileImg'
+                        value={file}
+                        onChange={(e) => setFile(e.target.files[0])}
                       />
 
                       <label htmlFor='profileImg'>Upload Profile Picture</label>

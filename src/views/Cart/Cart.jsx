@@ -12,6 +12,7 @@ import { cartActions } from '../../redux/slices/cartSlice'
 import Helmet from '../../components/Helmet/Helmet'
 import CommonSection from '../../components/CommonSection/CommonSection'
 import styles from './cart.module.scss'
+import { toast } from 'react-toastify'
 const Cart = () => {
   const navigate = useNavigate()
 
@@ -92,6 +93,7 @@ const Tr = ({ item }) => {
 
   const removeFromCart = () => {
     dispatch(cartActions.deleteItem(item.id))
+    toast.error('Product removed from cart')
   }
 
   return (
