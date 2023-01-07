@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'reactstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
 import Helmet from '../../components/Helmet/Helmet'
+import Loader from '../../components/Loader/Loader'
 
 import { logInWithEmail } from '../../Authorization'
 
@@ -40,8 +41,10 @@ const Login = () => {
           <div className={styles.formContainer}>
             <Row>
               {loading ? (
-                <Col lg='12'>
-                  <h6 className='text-center'>Loading...</h6>
+                <Col
+                  lg='12'
+                  className='d-flex justify-content-center align-items-center'>
+                  <Loader />
                 </Col>
               ) : (
                 <>

@@ -1,0 +1,11 @@
+@use '../../variables.scss' as values;
+
+.loader {
+  margin-top: 50px;
+  text-align: center;
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: values.$primary-color;
+  }
+}

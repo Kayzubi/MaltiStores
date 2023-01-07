@@ -95,8 +95,8 @@ const Header = () => {
               ref={navbarRef}
               onClick={navToggle}>
               <ul>
-                {navLinks.map((item, i) => (
-                  <li key={i}>
+                {navLinks.map((item, index) => (
+                  <li key={index}>
                     <NavLink
                       className={(navClass) =>
                         navClass.isActive ? `${styles.activeNav}` : ''

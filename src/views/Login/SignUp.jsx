@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { createEmailAccount, logInWithEmail } from '../../Authorization'
 
 import Helmet from '../../components/Helmet/Helmet'
+import Loader from '../../components/Loader/Loader'
 
 import { images } from '../../assets/images'
 import styles from './login.module.scss'
@@ -44,8 +45,10 @@ const SignUp = () => {
           <div className={styles.formContainer}>
             <Row>
               {loading ? (
-                <Col lg='12'>
-                  <h6 className='text-center'>Loading...</h6>
+                <Col
+                  lg='12'
+                  className='d-flex justify-content-center align-items-center'>
+                  <Loader />
                 </Col>
               ) : (
                 <>
