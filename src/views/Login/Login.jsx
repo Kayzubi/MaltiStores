@@ -8,6 +8,7 @@ import { logInWithEmail } from '../../Authorization'
 
 import { images } from '../../assets/images'
 import styles from './login.module.scss'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -17,18 +18,19 @@ const Login = () => {
   const navigate = useNavigate()
 
   const signIn = async (e) => {
-    e.prevendDefault()
+    e.preventDefault()
     setLoading(true)
-
     const user = await logInWithEmail(email, password)
 
-    if (!user) {
+    if (user) {
+      toast.success('Signed in successfully')
       setLoading(false)
+      navigate('/')
     } else {
       setLoading(false)
-      navigate('/home')
-      console.log(user)
     }
+
+    console.log(user)
   }
 
   return (

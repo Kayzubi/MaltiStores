@@ -13,6 +13,11 @@ import {
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase.config'
+import useAuth from '../../CustomHooks/useAuth'
+import { toast } from 'react-toastify'
+
 const navLinks = [
   {
     path: 'home',
@@ -33,6 +38,8 @@ const Header = () => {
   const navbarRef = useRef(null)
   const [navOpen, setNavOpen] = useState(false)
 
+  const { currentUser } = useAuth()
+
   const navigate = useNavigate()
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity)
@@ -48,6 +55,16 @@ const Header = () => {
         headerRef?.current.classList.remove(`${styles.stickyHeader}`)
       }
     })
+  }
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success('Signed out')
+      })
+      .catch((err) => {
+        toast.error(err.message)
+      })
   }
 
   useEffect(() => {
@@ -89,6 +106,28 @@ const Header = () => {
                     </NavLink>
                   </li>
                 ))}
+                <>
+                  {currentUser ? (
+                    <li className={styles.mobileBtn}>
+                      <button className={styles.btnSignOut} onClick={logOut}>
+                        Sign out
+                      </button>
+                    </li>
+                  ) : (
+                    <li className={styles.mobileBtn}>
+                      <button
+                        className={styles.btnSignIn}
+                        onClick={() => navigate('/sign-up')}>
+                        Sign up
+                      </button>
+                      <button
+                        className={styles.btnSignUp}
+                        onClick={() => navigate('/login')}>
+                        Log in
+                      </button>
+                    </li>
+                  )}
+                </>
               </ul>
             </div>
             <div className={styles.navIcons}>
@@ -102,13 +141,44 @@ const Header = () => {
                   <span className={styles.badge}>{totalQuantity}</span>
                 )}
               </span>
-              <span className={styles.userImage}>
-                <motion.img
-                  whileTap={{ scale: 1.2 }}
-                  src={icons.userIcon}
-                  alt='user'
-                />
-              </span>
+              {currentUser ? (
+                <>
+                  <span className={styles.greeting}>
+                    Hi, {currentUser.displayName}
+                  </span>
+                  <span className={styles.userImage}>
+                    <motion.img
+                      whileTap={{ scale: 1.2 }}
+                      src={icons.userIcon}
+                      alt='user'
+                    />
+                  </span>
+                  <span className={styles.deskBtn}>
+                    <motion.button
+                      whileTap={{ scale: 1.2 }}
+                      className={styles.btnSignOut}
+                      onClick={logOut}>
+                      Sign out
+                    </motion.button>
+                  </span>
+                </>
+              ) : (
+                <span className={styles.deskBtn}>
+                  <motion.button
+                    whileTap={{ scale: 1.2 }}
+                    className={styles.btnSignIn}
+                    onClick={() => navigate('/sign-up')}>
+                    Sign up
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 1.2 }}
+                    className={styles.btnSignUp}
+                    onClick={() => navigate('/login')}>
+                    Log in
+                  </motion.button>
+                </span>
+              )}
+
               <div onClick={navToggle} className={styles.menuIcon}>
                 {!navOpen ? <HiOutlineMenuAlt3 /> : <HiOutlineX color='#fff' />}
               </div>

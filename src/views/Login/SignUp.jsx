@@ -33,8 +33,7 @@ const SignUp = () => {
     } else {
       logInWithEmail(email, password)
       setLoading(false)
-      navigate('/home')
-      console.log(user)
+      navigate('/')
     }
   }
 

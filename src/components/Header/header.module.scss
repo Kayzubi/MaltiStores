@@ -88,6 +88,68 @@
   box-shadow: 3px 3px 8px -3px #ddd;
   background-color: #fff;
 }
+.greeting {
+  font-size: 12px;
+  font-weight: 600;
+  color: variables.$primary-color;
+  text-transform: capitalize;
+}
+
+.mobileBtn {
+  display: none;
+
+  .btnSignIn,
+  .btnSignOut {
+    border: none;
+    background-color: transparent;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .btnSignUp {
+    border: none;
+    background-color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: variables.$primary-color;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 8px 10px;
+  }
+}
+
+.deskBtn {
+  .btnSignIn,
+  .btnSignOut {
+    border: none;
+    background-color: transparent;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: variables.$primary-color;
+    font-weight: 600;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .btnSignUp {
+    border: none;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 14px;
+    background-color: variables.$primary-color;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 8px 10px;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .navigation {
@@ -124,6 +186,14 @@
     display: block;
     padding-right: 5px;
     z-index: 9999999999;
+  }
+
+  .deskBtn {
+    display: none;
+  }
+
+  .mobileBtn {
+    display: block;
   }
 
   .logo {

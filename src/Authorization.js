@@ -48,7 +48,7 @@ export const logInWithEmail = async (email, password) => {
     )
     const user = userCredentials.user
 
-    console.log(user)
+    return user
   } catch (error) {
     toast.error(error.message)
   }

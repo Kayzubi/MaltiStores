@@ -7,6 +7,7 @@ import Shop from '../views/Shop/Shop'
 import Login from '../views/Login/Login'
 import SignUp from '../views/Login/SignUp'
 import Checkout from '../views/Checkout/Checkout'
+import ProtectedRoute from './ProtectedRoute'
 
 const Routers = () => {
   return (
@@ -19,7 +20,14 @@ const Routers = () => {
       <Route path='cart' element={<Cart />} />
       <Route path='login' element={<Login />} />
       <Route path='sign-up' element={<SignUp />} />
-      <Route path='checkout' element={<Checkout />} />
+      <Route
+        path='checkout'
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   )
 }
