@@ -2,17 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './productCard.module.scss'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
+import { wishActions } from '../../redux/slices/wishListSlice'
 
 import { toast } from 'react-toastify'
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
 
 import { Col } from 'reactstrap'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 const ProductCard = ({ item }) => {
   const dispatch = useDispatch()
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  const wishList = useSelector((state) => state.wishList.wishList)
 
   const { id, productName, imgUrl, price, category } = item
 
@@ -27,13 +33,40 @@ const ProductCard = ({ item }) => {
         price,
       })
     )
-    toast.success('Product Added Successfully')
+    toast.success('Product added to cart')
+  }
+
+  const handleWishList = () => {
+    if (isFavorite) {
+      dispatch(wishActions.deleteItem(id))
+      toast.success('Product removed from wishlist')
+    } else {
+      dispatch(
+        wishActions.addItem({
+          id,
+          productName,
+          imgUrl,
+          price,
+        })
+      )
+      toast.success('Product added to wishlist')
+    }
   }
 
   const numberWithCommas = (x) => {
     const newX = x * 503
     return newX.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
+
+  useEffect(() => {
+    const existingItem = wishList.find((item) => item.id === id)
+
+    if (!existingItem) {
+      setIsFavorite(false)
+    } else {
+      setIsFavorite(true)
+    }
+  }, [id, wishList])
 
   const newPrice = numberWithCommas(price)
   return (
@@ -55,7 +88,13 @@ const ProductCard = ({ item }) => {
         </div>
         <div className='d-flex justify-content-between p-2 align-items-center'>
           <span>₦{newPrice}</span>
-          <span>
+          <span className={styles.actions}>
+            <motion.span
+              className={styles.favBtn}
+              whileTap={{ scale: 1.2 }}
+              onClick={handleWishList}>
+              {isFavorite ? <FaHeart color='red' /> : <FaRegHeart />}
+            </motion.span>
             <motion.button
               whileTap={{ scale: 1.2 }}
               className={styles.addBtn}

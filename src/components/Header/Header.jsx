@@ -43,6 +43,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity)
+  const totalFavorites = useSelector((state) => state.wishList.totalQuantity)
 
   const stickyHeaderFunc = () => {
     window.addEventListener('scroll', () => {
@@ -133,7 +134,9 @@ const Header = () => {
             <div className={styles.navIcons}>
               <span className={styles.icon}>
                 <FaRegHeart />
-                <span className={styles.badge}>1</span>
+                {totalFavorites !== 0 && (
+                  <span className={styles.badge}>{totalFavorites}</span>
+                )}
               </span>
               <span className={styles.icon} onClick={() => navigate('/cart')}>
                 <HiOutlineShoppingCart />
@@ -141,7 +144,22 @@ const Header = () => {
                   <span className={styles.badge}>{totalQuantity}</span>
                 )}
               </span>
-              {currentUser ? (
+              {!currentUser ? (
+                <span className={styles.deskBtn}>
+                  <motion.button
+                    whileTap={{ scale: 1.2 }}
+                    className={styles.btnSignIn}
+                    onClick={() => navigate('/sign-up')}>
+                    Sign up
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 1.2 }}
+                    className={styles.btnSignUp}
+                    onClick={() => navigate('/login')}>
+                    Log in
+                  </motion.button>
+                </span>
+              ) : (
                 <>
                   <span className={styles.greeting}>
                     Hi, {currentUser.displayName}
@@ -162,21 +180,6 @@ const Header = () => {
                     </motion.button>
                   </span>
                 </>
-              ) : (
-                <span className={styles.deskBtn}>
-                  <motion.button
-                    whileTap={{ scale: 1.2 }}
-                    className={styles.btnSignIn}
-                    onClick={() => navigate('/sign-up')}>
-                    Sign up
-                  </motion.button>
-                  <motion.button
-                    whileTap={{ scale: 1.2 }}
-                    className={styles.btnSignUp}
-                    onClick={() => navigate('/login')}>
-                    Log in
-                  </motion.button>
-                </span>
               )}
 
               <div onClick={navToggle} className={styles.menuIcon}>
