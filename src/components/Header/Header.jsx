@@ -132,7 +132,9 @@ const Header = () => {
               </ul>
             </div>
             <div className={styles.navIcons}>
-              <span className={styles.icon}>
+              <span
+                className={styles.icon}
+                onClick={() => navigate('/wishlist')}>
                 <FaRegHeart />
                 {totalFavorites !== 0 && (
                   <span className={styles.badge}>{totalFavorites}</span>

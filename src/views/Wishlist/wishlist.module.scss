@@ -1,0 +1,38 @@
+@use '../../variables.scss' as values;
+
+.cartTable {
+  th {
+    font-weight: 700;
+  }
+  td {
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+  }
+}
+
+.delete {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 8px;
+}
+
+.info {
+  color: #00000080;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.addBtn {
+  border: none;
+  outline: none;
+  background-color: values.$primary-color;
+  padding: 8px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}

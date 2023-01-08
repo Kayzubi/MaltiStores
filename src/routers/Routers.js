@@ -8,6 +8,7 @@ import Login from '../views/Login/Login'
 import SignUp from '../views/Login/SignUp'
 import Checkout from '../views/Checkout/Checkout'
 import ProtectedRoute from './ProtectedRoute'
+import Wishlist from '../views/Wishlist/Wishlist'
 
 const Routers = () => {
   return (
@@ -18,6 +19,7 @@ const Routers = () => {
       <Route path='shop' element={<Shop />} />
       <Route path='shop/:id' element={<ProductDetails />} />
       <Route path='cart' element={<Cart />} />
+      <Route path='wishlist' element={<Wishlist />} />
       <Route path='login' element={<Login />} />
       <Route path='sign-up' element={<SignUp />} />
       <Route

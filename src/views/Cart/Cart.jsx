@@ -93,7 +93,7 @@ const Tr = ({ item }) => {
 
   const removeFromCart = () => {
     dispatch(cartActions.deleteItem(item.id))
-    toast.error('Product removed from cart')
+    toast.success('Product removed from cart')
   }
 
   return (
