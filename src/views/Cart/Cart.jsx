@@ -15,7 +15,6 @@ import styles from './cart.module.scss'
 import { toast } from 'react-toastify'
 const Cart = () => {
   const navigate = useNavigate()
-
   const cartItems = useSelector((state) => state.cart.cartItems)
   const totalAmount = useSelector((state) => state.cart.totalPrice)
 

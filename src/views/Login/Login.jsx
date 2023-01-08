@@ -20,18 +20,21 @@ const Login = () => {
 
   const signIn = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    const user = await logInWithEmail(email, password)
+    const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z]+)\.([a-zA-Z]{2,5})$/
 
-    if (user) {
-      toast.success('Signed in successfully')
-      setLoading(false)
-      navigate('/')
+    if (email === '') {
+    } else if (!re.test(email)) {
     } else {
-      setLoading(false)
+      setLoading(true)
+      const user = await logInWithEmail(email, password)
+      if (user) {
+        toast.success('Signed in successfully')
+        setLoading(false)
+        navigate('/')
+      } else {
+        setLoading(false)
+      }
     }
-
-    console.log(user)
   }
 
   return (

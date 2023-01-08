@@ -20,8 +20,8 @@ const Cart = () => {
   }, [])
 
   return (
-    <Helmet title='Cart'>
-      <CommonSection title='Shopping Cart' />
+    <Helmet title='Wishlist'>
+      <CommonSection title='Wishlist' />
       <section>
         <Container>
           <Row>
