@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { FaExclamationCircle } from 'react-icons/fa'
+
 import { createEmailAccount, logInWithEmail } from '../../Authorization'
 
 import Helmet from '../../components/Helmet/Helmet'
@@ -16,10 +18,27 @@ const SignUp = () => {
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const formValues = {
+    username: username,
+    email: email,
+    password: password,
+  }
+
+  const [formErrors, setFormErrors] = useState({})
+
   const navigate = useNavigate()
 
-  const signUpWithEmail = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
+
+    const valid = validateForm(formValues)
+
+    if (valid) {
+      signUpWithEmail()
+    }
+  }
+
+  const signUpWithEmail = async (e) => {
     setLoading(true)
 
     const obj = {
@@ -36,6 +55,31 @@ const SignUp = () => {
       setLoading(false)
       navigate('/')
     }
+  }
+
+  const validateForm = (values) => {
+    const errors = {}
+    let valid = true
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
+    const passwordRe = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/gm
+
+    if (!values.username) {
+      errors.username = 'Username cannot be empty'
+    }
+    if (!values.email) {
+      errors.email = 'Email cannot be empty'
+      valid = false
+    } else if (!regex.test(values.email)) {
+      errors.email = 'Enter a valid email'
+      valid = false
+    }
+    if (!passwordRe.test(values.password)) {
+      errors.password = `Password must have at least 8 characters, must contain at least 1 uppercase letter 1 lowercase letter, and 1 number, Can contain special characters`
+      valid = false
+    }
+
+    setFormErrors(errors)
+    return valid
   }
 
   return (
@@ -57,10 +101,22 @@ const SignUp = () => {
                       <h5>Create an account</h5>
                       <p>Create a free account to continue</p>
 
+                      {Object.keys(formErrors).length !== 0 && (
+                        <div className='mt-4'>
+                          {Object.keys(formErrors).map((key) => (
+                            <p
+                              key={key}
+                              className='error d-flex gap-2 align-items-center mb-2'>
+                              <FaExclamationCircle /> {formErrors[key]}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+
                       <form
                         action=''
                         className={styles.loginForm}
-                        onSubmit={signUpWithEmail}>
+                        onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
                           <input
                             type='text'
@@ -105,7 +161,7 @@ const SignUp = () => {
                           </span>
                         </p>
 
-                        <button type='submit' className='buyBtn w-100'>
+                        <button type='submit' className='buyBtn w-100 mt-3'>
                           sign up
                         </button>
                       </form>

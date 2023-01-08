@@ -6,7 +6,7 @@ import Helmet from '../../components/Helmet/Helmet'
 import Loader from '../../components/Loader/Loader'
 
 import { logInWithEmail } from '../../Authorization'
-
+import { FaExclamationCircle } from 'react-icons/fa'
 import { images } from '../../assets/images'
 import styles from './login.module.scss'
 import { toast } from 'react-toastify'
@@ -16,25 +16,55 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const formValues = {
+    email: email,
+    password: password,
+  }
+
+  const [formErrors, setFormErrors] = useState({})
+
   const navigate = useNavigate()
 
-  const signIn = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z]+)\.([a-zA-Z]{2,5})$/
+    let valid = validateForm(formValues)
 
-    if (email === '') {
-    } else if (!re.test(email)) {
-    } else {
-      setLoading(true)
-      const user = await logInWithEmail(email, password)
-      if (user) {
-        toast.success('Signed in successfully')
-        setLoading(false)
-        navigate('/')
-      } else {
-        setLoading(false)
-      }
+    if (valid) {
+      signIn()
     }
+  }
+
+  const signIn = async () => {
+    setLoading(true)
+    const user = await logInWithEmail(email, password)
+    if (user) {
+      toast.success('Signed in successfully')
+      setLoading(false)
+      navigate('/')
+    } else {
+      setLoading(false)
+    }
+  }
+
+  const validateForm = (values) => {
+    const errors = {}
+    let valid = true
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
+
+    if (!values.email) {
+      errors.email = 'Email cannot be empty'
+      valid = false
+    } else if (!regex.test(values.email)) {
+      errors.email = 'Enter a valid email'
+      valid = false
+    }
+    if (!values.password) {
+      errors.password = 'Please enter a password'
+      valid = false
+    }
+
+    setFormErrors(errors)
+    return valid
   }
 
   return (
@@ -56,10 +86,22 @@ const Login = () => {
                       <h5>Welcome back!</h5>
                       <p>Sign in to your account to continue</p>
 
+                      {Object.keys(formErrors).length !== 0 && (
+                        <div className='mt-4'>
+                          {Object.keys(formErrors).map((key) => (
+                            <p
+                              key={key}
+                              className='error d-flex gap-2 align-items-center mb-2'>
+                              <FaExclamationCircle /> {formErrors[key]}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+
                       <form
                         action=''
                         className={styles.loginForm}
-                        onSubmit={signIn}>
+                        onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
                           <input
                             type='text'
