@@ -46,7 +46,7 @@ const Shop = () => {
       <section>
         <Container>
           <Row>
-            <Col lg='3' md='6'>
+            <Col lg='6' md='6'>
               <div className={styles.filterOptions}>
                 <select name='' id='' onChange={handleFilter}>
                   <option value=''>Filter by Category</option>
@@ -58,15 +58,7 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg='3' md='6'>
-              <div className={styles.filterOptions}>
-                <select name='' id=''>
-                  <option disabled>Sort by:</option>
-                  <option value='ascending'>Ascending</option>
-                  <option value='descending'>Descending</option>
-                </select>
-              </div>
-            </Col>
+
             <Col lg='6' md='12'>
               <div className={styles.searchBox}>
                 <input
