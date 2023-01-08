@@ -31,7 +31,7 @@ const wishListSlice = createSlice({
     },
 
     clearAll: (state) => {
-      state.wishList = initialState
+      state.wishList = initialState.wishList
       state.totalQuantity = 0
     },
   },

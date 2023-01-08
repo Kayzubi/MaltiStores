@@ -36,7 +36,6 @@ const cartSlice = createSlice({
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       )
-      console.log(state.cartItems)
     },
 
     deleteItem: (state, action) => {
@@ -53,9 +52,9 @@ const cartSlice = createSlice({
     },
 
     clearAll: (state) => {
-      state.cartItems = initialState
-      state.totalPrice = 0
-      state.totalQuantity = 0
+      state.cartItems = initialState.cartItems
+      state.totalPrice = initialState.totalPrice
+      state.totalQuantity = initialState.totalQuantity
     },
   },
 })
