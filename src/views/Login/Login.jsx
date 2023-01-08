@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -66,6 +66,10 @@ const Login = () => {
     setFormErrors(errors)
     return valid
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Helmet title='Login'>
